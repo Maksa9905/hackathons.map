@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import vue from '@vitejs/plugin-vue'
+import react from '@vitejs/plugin-react'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -10,7 +10,7 @@ const __dirname = dirname(__filePath)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    react(),
     dts({
       rollupTypes: true,
       tsconfigPath: resolve(__dirname, 'tsconfig.json'),
@@ -24,10 +24,11 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['react', 'react/jsx-runtime'],
       output: {
         globals: {
-          vue: 'Vue',
+          react: 'React',
+          'react/jsx-runtime': 'jsxRuntime',
         },
       },
     },
